@@ -18,7 +18,7 @@
 # Configuration for JRE repository
 ---
 jre:
-  version: 1.8.+
+  version: 1.8.0_sr3fp12
   repository_root: "https://public.dhe.ibm.com/ibmdl/export/pub/systems/cloud/runtimes/java/meta/jre/linux/x86_64/"
   heap_ratio: 0.75
 jvmkill_agent:
