@@ -1,3 +1,4 @@
+# Encoding: utf-8
 # Cloud Foundry Java Buildpack
 # Copyright 2013-2017 the original author or authors.
 #
@@ -62,6 +63,13 @@ describe JavaBuildpack::Component::VersionedDependencyComponent do
       expect(droplet.sandbox + 'test-file').to exist
     end
 
+    it 'downloads and installs BIN file in the sandbox',
+       cache_fixture: 'stub-download.bin' do
+
+      component.download_bin
+      expect(droplet.sandbox + 'test-file').to exist
+    end
+
     it 'downloads and expand ZIP file in the sandbox',
        cache_fixture: 'stub-download.zip' do
 
@@ -81,6 +89,6 @@ end
 
 class StubVersionedDependencyComponent < JavaBuildpack::Component::VersionedDependencyComponent
 
-  public :supports?, :download_jar, :download_tar, :download_zip
+  public :supports?, :download_jar, :download_tar, :download_bin, :download_zip
 
 end
