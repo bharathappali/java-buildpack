@@ -97,6 +97,7 @@ To learn how to configure various properties of the buildpack, follow the "Confi
 	* [OpenJDK](docs/jre-open_jdk_jre.md) ([Configuration](docs/jre-open_jdk_jre.md#configuration))
 	* [Oracle](docs/jre-oracle_jre.md) ([Configuration](docs/jre-oracle_jre.md#configuration))
 	* [Azul Zulu](docs/jre-zulu_jre.md) ([Configuration](docs/jre-zulu_jre.md#configuration))
+	* [IBMJAVA](docs/jre-ibmjava_jre.md) ([Configuration](docs/jre-ibmjava_jre.md#configuration))
 * [Extending](docs/extending.md)
 	* [Application](docs/extending-application.md)
 	* [Droplet](docs/extending-droplet.md)
