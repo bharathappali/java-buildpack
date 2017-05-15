@@ -1,5 +1,20 @@
-# IBMJAVA JRE
-IBMJAVA JRE provides Java runtimes developed by IBMJAVA team.  Version of Java `1.8` level is available.  Unless otherwise configured, the version of Java that will be used is specified in [`config/ibmjava_jre.yml`][].
+## IBM JRE
+
+
+
+IBM JRE provides IBM® SDK, Java™ Technology Edition, Version 8. Unless otherwise configured, the version of Java that will be used is specified in [`config/ibmjava_jre.yml`][]. See the license section for restrictions that relate to the use of this image. For more information about IBM® SDK, Java™ Technology Edition and API documentation, see the [IBM Knowledge Center](http://www.ibm.com/support/knowledgecenter/SSYKE2/welcome_javasdk_family.html).
+
+
+
+### License
+
+
+
+Licenses for the products installed within the buildpack:
+
+
+
+IBM® SDK, Java™ Technology Edition, Version 8: [International License Agreement for Non-Warranted Programs](http://www14.software.ibm.com/cgi-bin/weblap/lap.pl?la_formnum=&li_formnum=L-PMAA-A3Z8P2&title=IBM%AE+SDK%2C+Java%99+Technology+Edition%2C+Version+8.0&l=en).
 
 
 ## Configuration
@@ -7,7 +22,7 @@ For general information on configuring the buildpack, including how to specify c
 
 The JRE can be configured by modifying the [`config/ibmjava_jre.yml`][] file in the buildpack fork.  The JRE uses the [`Repository` utility support][repositories] and so, it supports the [version syntax][]  defined there.
 
-To use IBMJAVA JRE instead of OpenJDK without forking java-buildpack, set environment variable:
+To use IBM JRE instead of OpenJDK without forking java-buildpack, set environment variable:
 
 `cf set-env <app_name> JBP_CONFIG_COMPONENTS '{jres: ["JavaBuildpack::Jre::IbmjavaJRE"]}'`
 
@@ -15,14 +30,14 @@ To use IBMJAVA JRE instead of OpenJDK without forking java-buildpack, set enviro
 
 | Name | Description
 | ---- | -----------
-| `repository_root` | The URL of the IBMJAVA repository index ([details][repositories]).
+| `repository_root` | The URL of the IBM JRE repository index ([details][repositories]).
 | `version` | The version of Java runtime to use.
 
 ### Additional Resources
 The JRE can also be configured by overlaying a set of resources on the default distribution. To do this, add files to the `resources/ibmjava_jre` directory in the buildpack fork.
 
 #### Custom CA Certificates
-To add custom SSL certificates, add your `cacerts` file to `resources/ibmjava_jre/jre/lib/security/cacerts`.  This file will be overlayed onto the IBMJAVA distribution.
+To add custom SSL certificates, add your `cacerts` file to `resources/ibmjava_jre/jre/lib/security/cacerts`.  This file will be overlayed onto the IBM JRE distribution.
 
 ### Memory
 The total available memory for the application's container is specified when an application is pushed.
@@ -52,3 +67,4 @@ The container's total memory is logged during `cf push` and `cf scale`, for exam
 [Configuration and Extension]: ../README.md#configuration-and-extension
 [repositories]: extending-repositories.md
 [version syntax]: extending-repositories.md#version-syntax-and-ordering
+
