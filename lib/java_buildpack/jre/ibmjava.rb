@@ -1,4 +1,5 @@
 # Encoding: utf-8
+
 # Cloud Foundry Java Buildpack
 # Copyright 2017 the original author or authors.
 #
@@ -22,7 +23,7 @@ require 'java_buildpack/util/tokenized_version'
 module JavaBuildpack
   module Jre
 
-    # Encapsulates the detect, compile, and release functionality for selecting an IBMJAVA JRE.
+    # Encapsulates the detect, compile, and release functionality for selecting a JRE.
     class Ibmjava < JavaBuildpack::Component::VersionedDependencyComponent
 
       # constant HEAP_RATIO is assigned the usual heap ratio required
