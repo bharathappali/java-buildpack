@@ -1,4 +1,5 @@
 # Encoding: utf-8
+
 # Cloud Foundry Java Buildpack
 # Copyright 2013-2017 the original author or authors.
 #
@@ -99,6 +100,6 @@ class StubBaseComponent < JavaBuildpack::Component::BaseComponent
 
   attr_reader :application, :component_name, :configuration, :droplet
 
-  public :download, :download_jar, :download_tar, :download_bin, :download_zip, :with_timing
+  public :download, :download_bin, :download_jar, :download_tar, :download_zip, :with_timing
 
 end

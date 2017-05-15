@@ -1,4 +1,5 @@
 # Encoding: utf-8
+
 # Cloud Foundry Java Buildpack
 # Copyright 2017 the original author or authors.
 #
@@ -22,6 +23,7 @@ require 'java_buildpack/jre/ibmjava'
 describe JavaBuildpack::Jre::Ibmjava do
   include_context 'component_helper'
   let(:java_home) { JavaBuildpack::Component::MutableJavaHome.new }
+
   it 'detects with id of ibmjava-<version>' do
     expect(component.detect).to eq("ibmjava=#{version}")
   end
