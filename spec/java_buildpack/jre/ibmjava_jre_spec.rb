@@ -26,7 +26,7 @@ describe JavaBuildpack::Jre::IbmjavaJRE do
   include_context 'component_helper'
   let(:component) { StubIbmjavaJRE.new context }
 
-  let(:java_home) { JavaBuildpack::Jre::MutableJavaHome.new }
+  let(:java_home) { JavaBuildpack::Component::MutableJavaHome.new }
   let(:configuration) do
     { 'jre' => jre_configuration,
       'jvmkill_agent' => jvmkill_agent_configuration }
@@ -43,7 +43,7 @@ describe JavaBuildpack::Jre::IbmjavaJRE do
   it 'creates IbmJdkLike instance' do
     allow_any_instance_of(StubIbmjavaJRE).to receive(:supports?).and_return false
     allow(JavaBuildpack::Jre::Ibmjava)
-      .to receive(:new).with(sub_configuration_context(jre_configuration).merge(component_name: 'Stub Ibmjava'))
+      .to receive(:new).with(sub_configuration_context(jre_configuration).merge(component_name: 'Stub Ibmjava JRE'))
     allow(JavaBuildpack::Jre::JvmkillAgent)
       .to receive(:new).with(sub_configuration_context(jvmkill_agent_configuration))
     component.sub_components context

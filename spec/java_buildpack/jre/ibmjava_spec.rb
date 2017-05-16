@@ -27,7 +27,7 @@ describe JavaBuildpack::Jre::Ibmjava do
   it 'detects with id of ibmjava-<version>' do
     expect(component.detect).to eq("ibmjava=#{version}")
   end
-  it 'installs the java from bin', cache_fixture: 'stub-java.bin' do
+  it 'installs the java from bin', cache_fixture: 'stub-download.bin' do
     component.detect
     component.compile
     expect(sandbox + 'jre/bin/java').to exist
