@@ -40,7 +40,7 @@ describe JavaBuildpack::Jre::IbmjavaJRE do
     expect(component.supports?).to be
   end
 
-  it 'creates IbmJdkLike instance' do
+  it 'creates Ibmjava instance' do
     allow_any_instance_of(StubIbmjavaJRE).to receive(:supports?).and_return false
     allow(JavaBuildpack::Jre::Ibmjava)
       .to receive(:new).with(sub_configuration_context(jre_configuration).merge(component_name: 'Stub Ibmjava JRE'))
