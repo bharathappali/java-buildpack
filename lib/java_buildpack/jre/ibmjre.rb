@@ -24,7 +24,7 @@ module JavaBuildpack
   module Jre
 
     # Encapsulates the detect, compile, and release functionality for selecting a JRE.
-    class IbmjavaJRE < JavaBuildpack::Component::ModularComponent
+    class IBMJRE < JavaBuildpack::Component::ModularComponent
 
       protected
 
