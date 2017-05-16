@@ -1,21 +1,10 @@
 ## IBM JRE
-
-
-
-IBM JRE provides IBM® SDK, Java™ Technology Edition, Version 8. Unless otherwise configured, the version of Java that will be used is specified in [`config/ibmjava_jre.yml`][]. See the license section for restrictions that relate to the use of this image. For more information about IBM® SDK, Java™ Technology Edition and API documentation, see the [IBM Knowledge Center](http://www.ibm.com/support/knowledgecenter/SSYKE2/welcome_javasdk_family.html).
-
-
+IBM JRE provides IBM® SDK, Java™ Technology Edition, Version 8. Unless otherwise configured, the version of Java that will be used is specified in [`config/ibmjava_jre.yml`][]. See the license section for restrictions that relate to the use of this image. For more information about IBM® SDK, Java™ Technology Edition and API documentation, see the [IBM Knowledge Center][].
 
 ### License
-
-
-
 Licenses for the products installed within the buildpack:
 
-
-
-IBM® SDK, Java™ Technology Edition, Version 8: [International License Agreement for Non-Warranted Programs](http://www14.software.ibm.com/cgi-bin/weblap/lap.pl?la_formnum=&li_formnum=L-PMAA-A3Z8P2&title=IBM%AE+SDK%2C+Java%99+Technology+Edition%2C+Version+8.0&l=en).
-
+IBM® SDK, Java™ Technology Edition, Version 8: [International License Agreement for Non-Warranted Programs][].
 
 ## Configuration
 For general information on configuring the buildpack, including how to specify configuration values through environment variables, refer to [Configuration and Extension][].
@@ -67,4 +56,7 @@ The container's total memory is logged during `cf push` and `cf scale`, for exam
 [Configuration and Extension]: ../README.md#configuration-and-extension
 [repositories]: extending-repositories.md
 [version syntax]: extending-repositories.md#version-syntax-and-ordering
+[IBM Knowledge Center]: http://www.ibm.com/support/knowledgecenter/SSYKE2/welcome_javasdk_family.html
+[International License Agreement for Non-Warranted Programs]: http://www14.software.ibm.com/cgi-bin/weblap/lap.pl?la_formnum=&li_formnum=L-PMAA-A3Z8P2&title=IBM%AE+SDK%2C+Java%99+Technology+Edition%2C+Version+8.0&l=en
+
 
