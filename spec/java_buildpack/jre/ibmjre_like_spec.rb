@@ -20,7 +20,7 @@ require 'component_helper'
 require 'java_buildpack/component/mutable_java_home'
 require 'java_buildpack/jre/ibmjre_like'
 
-describe JavaBuildpack::Jre::Ibmjava do
+describe JavaBuildpack::Jre::IbmjreLike do
   include_context 'component_helper'
   let(:java_home) { JavaBuildpack::Component::MutableJavaHome.new }
 
