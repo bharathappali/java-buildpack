@@ -27,7 +27,7 @@ describe JavaBuildpack::Jre::IbmjreLike do
   it 'detects with id of ibmjre_like-<version>' do
     expect(component.detect).to eq("ibmjre-like=#{version}")
   end
-  it 'installs the java from bin', cache_fixture: 'stub-download.bin' do
+  it 'installs the java from InstallAnywhere (tm) BIN file', cache_fixture: 'stub-java.bin' do
     component.detect
     component.compile
     expect(sandbox + 'jre/bin/java').to exist
