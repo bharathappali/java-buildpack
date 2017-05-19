@@ -50,6 +50,13 @@ describe JavaBuildpack::Component::VersionedDependencyComponent do
       expect(component.detect).to eq("stub-versioned-dependency-component=#{version}")
     end
 
+    it 'downloads and installs InstallAnywhere (tm) BIN file in the sandbox',
+       cache_fixture: 'stub-download.bin' do
+
+      component.download_bin
+      expect(droplet.sandbox + 'test-file').to exist
+    end
+
     it 'downloads jar file and put it in the sandbox',
        cache_fixture: 'stub-download.jar' do
 
@@ -61,13 +68,6 @@ describe JavaBuildpack::Component::VersionedDependencyComponent do
        cache_fixture: 'stub-download.tar.gz' do
 
       component.download_tar
-      expect(droplet.sandbox + 'test-file').to exist
-    end
-
-    it 'downloads and installs BIN file in the sandbox',
-       cache_fixture: 'stub-download.bin' do
-
-      component.download_bin
       expect(droplet.sandbox + 'test-file').to exist
     end
 
