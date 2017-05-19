@@ -53,6 +53,13 @@ describe JavaBuildpack::Component::BaseComponent do
     expect(stdout.string).to match(/Downloading Stub Base Component #{version} from #{uri}/)
   end
 
+  it 'downloads and installs InstallAnywhere (tm) BIN file in the sandbox',
+     cache_fixture: 'stub-download.bin' do
+
+    component.download_bin(version, uri)
+    expect(droplet.sandbox + 'test-file').to exist
+  end
+
   it 'downloads jar file and put it in the sandbox',
      cache_fixture: 'stub-download.jar' do
 
@@ -64,13 +71,6 @@ describe JavaBuildpack::Component::BaseComponent do
      cache_fixture: 'stub-download.tar.gz' do
 
     component.download_tar(version, uri)
-    expect(droplet.sandbox + 'test-file').to exist
-  end
-
-  it 'downloads and installs BIN file in the sandbox',
-     cache_fixture: 'stub-download.bin' do
-
-    component.download_bin(version, uri)
     expect(droplet.sandbox + 'test-file').to exist
   end
 
