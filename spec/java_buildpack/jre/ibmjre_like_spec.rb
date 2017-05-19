@@ -18,14 +18,14 @@
 require 'spec_helper'
 require 'component_helper'
 require 'java_buildpack/component/mutable_java_home'
-require 'java_buildpack/jre/ibmjava'
+require 'java_buildpack/jre/ibmjre_like'
 
 describe JavaBuildpack::Jre::Ibmjava do
   include_context 'component_helper'
   let(:java_home) { JavaBuildpack::Component::MutableJavaHome.new }
 
-  it 'detects with id of ibmjava-<version>' do
-    expect(component.detect).to eq("ibmjava=#{version}")
+  it 'detects with id of ibmjre_like-<version>' do
+    expect(component.detect).to eq("ibmjre-like=#{version}")
   end
   it 'installs the java from bin', cache_fixture: 'stub-download.bin' do
     component.detect
