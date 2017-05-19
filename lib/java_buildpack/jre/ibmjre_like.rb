@@ -24,7 +24,7 @@ module JavaBuildpack
   module Jre
 
     # Encapsulates the detect, compile, and release functionality for selecting a JRE.
-    class Ibmjava < JavaBuildpack::Component::VersionedDependencyComponent
+    class IbmjreLike < JavaBuildpack::Component::VersionedDependencyComponent
 
       # constant HEAP_RATIO is assigned the usual heap ratio required
       HEAP_RATIO = 0.75

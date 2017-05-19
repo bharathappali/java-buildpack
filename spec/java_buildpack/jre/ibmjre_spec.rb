@@ -19,7 +19,7 @@ require 'spec_helper'
 require 'component_helper'
 require 'fileutils'
 require 'java_buildpack/component/mutable_java_home'
-require 'java_buildpack/jre/ibmjava'
+require 'java_buildpack/jre/ibmjre_like'
 require 'java_buildpack/jre/ibmjre'
 
 describe JavaBuildpack::Jre::IBMJRE do
@@ -42,7 +42,7 @@ describe JavaBuildpack::Jre::IBMJRE do
 
   it 'creates Ibmjava instance' do
     allow_any_instance_of(StubIBMJRE).to receive(:supports?).and_return false
-    allow(JavaBuildpack::Jre::Ibmjava)
+    allow(JavaBuildpack::Jre::IbmjreLike)
       .to receive(:new).with(sub_configuration_context(jre_configuration).merge(component_name: 'Stub IBMJRE'))
     allow(JavaBuildpack::Jre::JvmkillAgent)
       .to receive(:new).with(sub_configuration_context(jvmkill_agent_configuration))
