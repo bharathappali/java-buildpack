@@ -1,5 +1,3 @@
-# Encoding: utf-8
-
 # Cloud Foundry Java Buildpack
 # Copyright 2017 the original author or authors.
 #
@@ -24,7 +22,7 @@ module JavaBuildpack
   module Jre
 
     # Encapsulates the detect, compile, and release functionality for selecting a JRE.
-    class IBMJRE < JavaBuildpack::Component::ModularComponent
+    class IbmJRE < JavaBuildpack::Component::ModularComponent
 
       protected
 
