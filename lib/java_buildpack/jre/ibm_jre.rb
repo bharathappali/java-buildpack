@@ -15,7 +15,7 @@
 
 require 'java_buildpack/component/modular_component'
 require 'java_buildpack/jre'
-require 'java_buildpack/jre/ibmjre_like'
+require 'java_buildpack/jre/ibm_jre_initializer'
 require 'java_buildpack/jre/jvmkill_agent'
 
 module JavaBuildpack
@@ -34,7 +34,7 @@ module JavaBuildpack
       # (see JavaBuildpack::Component::ModularComponent#sub_components)
       def sub_components(context)
         [
-          IbmjreLike.new(sub_configuration_context(context, 'jre')
+          IbmJreInitializer.new(sub_configuration_context(context, 'jre')
                                .merge(component_name: self.class.to_s.space_case)),
           JvmkillAgent.new(sub_configuration_context(context, 'jvmkill_agent'))
         ]
