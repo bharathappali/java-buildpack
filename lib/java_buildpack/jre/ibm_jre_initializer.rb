@@ -24,7 +24,7 @@ module JavaBuildpack
   module Jre
 
     # Encapsulates the detect, compile, and release functionality for selecting a JRE.
-    class IbmjreLike < JavaBuildpack::Component::VersionedDependencyComponent
+    class IbmJreInitializer < JavaBuildpack::Component::VersionedDependencyComponent
 
       # Creates an instance
       #
