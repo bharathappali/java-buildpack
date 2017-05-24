@@ -50,15 +50,7 @@ module JavaBuildpack
         download(@version, @uri['uri'], @component_name) do |file|
           check_sha(file, @uri['sha256sum'])
           with_timing "Installing #{@component_name} to #{@droplet.sandbox.relative_path_from(@droplet.root)}" do
-            FileUtils.mkdir_p @droplet.sandbox
-            response_file = Tempfile.new('response.properties')
-            response_file.puts('INSTALLER_UI=silent')
-            response_file.puts('LICENSE_ACCEPTED=TRUE')
-            response_file.puts("USER_INSTALL_DIR=#{@droplet.sandbox}")
-            response_file.close
-
-            File.chmod(0o755, file.path) unless File.executable?(file.path)
-            shell "#{file.path} -i silent -f #{response_file.path} 2>&1"
+	    install_installanywhere_bin(@droplet.sandbox, file)
           end
         end
         @droplet.copy_resources
@@ -81,6 +73,18 @@ module JavaBuildpack
       HEAP_RATIO = 0.75
 
       KILO = 1024
+
+      def install_installanywhere_bin(target_directory, file)
+        FileUtils.mkdir_p target_directory
+        response_file = Tempfile.new('response.properties')
+        response_file.puts('INSTALLER_UI=silent')
+        response_file.puts('LICENSE_ACCEPTED=TRUE')
+        response_file.puts("USER_INSTALL_DIR=#{target_directory}")
+        response_file.close
+
+        File.chmod(0o755, file.path) unless File.executable?(file.path)
+        shell "#{file.path} -i silent -f #{response_file.path} 2>&1"
+      end
 
       def check_sha(file, checksum)
         raise 'sha256 checksum not matches' unless Digest::SHA256.hexdigest(File.read(file.path)) == checksum
