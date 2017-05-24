@@ -25,7 +25,7 @@ describe JavaBuildpack::Jre::IbmJreInitializer do
   it 'detects with id of ibm_jre_initializer-<version>' do
     expect(component.detect).to eq("ibm-jre-initializer=#{version}")
   end
-  it 'installs the java from bin', cache_fixture: 'stub-java.bin' do
+  it 'installs java from bin', cache_fixture: 'stub-java.bin' do
     component.detect
     component.compile
     expect(sandbox + 'jre/bin/java').to exist
