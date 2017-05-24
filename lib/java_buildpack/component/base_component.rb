@@ -95,31 +95,6 @@ module JavaBuildpack
         end
       end
 
-      # Downloads a given InstallAnywhere (tm) BIN file and installs it.
-      #
-      # @param [String] version the version of the download
-      # @param [String] uri the uri of the download
-      # @param [Pathname] target_directory the directory to install the BIN file to.  Defaults to the component's
-      #                                    sandbox.
-      # @param [String] name an optional name for the download and expansion.  Defaults to +@component_name+.
-      # @return [Void]
-      def download_bin(version, entry, target_directory = @droplet.sandbox, name = @component_name)
-        download(version, entry['uri'], name) do |file|
-          check_sha(file, entry['sha256sum'])
-          with_timing "Installing #{name} to #{target_directory.relative_path_from(@droplet.root)}" do
-            FileUtils.mkdir_p target_directory
-            response_file = Tempfile.new('response.properties')
-            response_file.puts('INSTALLER_UI=silent')
-            response_file.puts('LICENSE_ACCEPTED=TRUE')
-            response_file.puts("USER_INSTALL_DIR=#{target_directory}")
-            response_file.close
-
-            File.chmod(0o755, file.path) unless File.executable?(file.path)
-            shell "#{file.path} -i silent -f #{response_file.path} 2>&1"
-          end
-        end
-      end
-
       # Downloads a given JAR file and stores it.
       #
       # @param [String] version the version of the download
@@ -214,10 +189,6 @@ module JavaBuildpack
         else
           ''
         end
-      end
-
-      def check_sha(file, checksum)
-        raise 'sha256 checksum not matches' unless Digest::SHA256.hexdigest(File.read(file.path)) == checksum
       end
 
     end

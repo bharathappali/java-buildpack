@@ -26,9 +26,6 @@ module JavaBuildpack
     # Encapsulates the detect, compile, and release functionality for selecting a JRE.
     class IbmjreLike < JavaBuildpack::Component::VersionedDependencyComponent
 
-      # constant HEAP_RATIO is assigned the usual heap ratio required
-      HEAP_RATIO = 0.75
-
       # Creates an instance
       #
       # @param [Hash] context a collection of utilities used the component
@@ -51,7 +48,20 @@ module JavaBuildpack
 
       # (see JavaBuildpack::Component::BaseComponent#compile)
       def compile
-        download_bin
+        download(@version, @uri['uri'], name) do |file|
+          check_sha(file, @uri['sha256sum'])
+          with_timing "Installing #{name} to #{@droplet.sandbox.relative_path_from(@droplet.root)}" do
+            FileUtils.mkdir_p @droplet.sandbox
+            response_file = Tempfile.new('response.properties')
+            response_file.puts('INSTALLER_UI=silent')
+            response_file.puts('LICENSE_ACCEPTED=TRUE')
+            response_file.puts("USER_INSTALL_DIR=#{@droplet.sandbox}")
+            response_file.close
+
+            File.chmod(0o755, file.path) unless File.executable?(file.path)
+            shell "#{file.path} -i silent -f #{response_file.path} 2>&1"
+          end
+        end
         @droplet.copy_resources
       end
 
@@ -68,7 +78,14 @@ module JavaBuildpack
 
       private
 
+      # constant HEAP_RATIO is assigned the usual heap ratio required
+      HEAP_RATIO = 0.75
+
       KILO = 1024
+
+      def check_sha(file, checksum)
+        raise 'sha256 checksum not matches' unless Digest::SHA256.hexdigest(File.read(file.path)) == checksum
+      end
 
       def mem_opts
         mopts = []
