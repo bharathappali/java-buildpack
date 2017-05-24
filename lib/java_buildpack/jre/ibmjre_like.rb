@@ -48,7 +48,7 @@ module JavaBuildpack
 
       # (see JavaBuildpack::Component::BaseComponent#compile)
       def compile
-        download(@version, @uri['uri'], name) do |file|
+        download(@version, @uri['uri'], @component_name) do |file|
           check_sha(file, @uri['sha256sum'])
           with_timing "Installing #{name} to #{@droplet.sandbox.relative_path_from(@droplet.root)}" do
             FileUtils.mkdir_p @droplet.sandbox
