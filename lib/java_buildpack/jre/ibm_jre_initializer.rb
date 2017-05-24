@@ -50,7 +50,7 @@ module JavaBuildpack
         download(@version, @uri['uri'], @component_name) do |file|
           check_sha(file, @uri['sha256sum'])
           with_timing "Installing #{@component_name} to #{@droplet.sandbox.relative_path_from(@droplet.root)}" do
-            install_installanywhere_bin(@droplet.sandbox, file)
+            install_bin(@droplet.sandbox, file)
           end
         end
         @droplet.copy_resources
@@ -74,7 +74,12 @@ module JavaBuildpack
 
       KILO = 1024
 
-      def install_installanywhere_bin(target_directory, file)
+      # Installs the Downloaded InstallAnywhere (TM) BIN file to the target directory
+      #
+      # @param [String] target_directory, Where the java needs to be installed
+      # @param [File] file, InstallAnywhere (TM) BIN file
+      # @return [Void]
+      def install_bin(target_directory, file)
         FileUtils.mkdir_p target_directory
         response_file = Tempfile.new('response.properties')
         response_file.puts('INSTALLER_UI=silent')
@@ -86,6 +91,7 @@ module JavaBuildpack
         shell "#{file.path} -i silent -f #{response_file.path} 2>&1"
       end
 
+      # Checks the SHA256 Checksum of the file
       def check_sha(file, checksum)
         raise 'sha256 checksum not matches' unless Digest::SHA256.hexdigest(File.read(file.path)) == checksum
       end
