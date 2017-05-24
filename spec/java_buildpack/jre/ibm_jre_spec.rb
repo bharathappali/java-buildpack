@@ -19,12 +19,12 @@ require 'spec_helper'
 require 'component_helper'
 require 'fileutils'
 require 'java_buildpack/component/mutable_java_home'
-require 'java_buildpack/jre/ibmjre_like'
-require 'java_buildpack/jre/ibmjre'
+require 'java_buildpack/jre/ibm_jre_initializer'
+require 'java_buildpack/jre/ibm_jre'
 
-describe JavaBuildpack::Jre::IBMJRE do
+describe JavaBuildpack::Jre::IbmJRE do
   include_context 'component_helper'
-  let(:component) { StubIBMJRE.new context }
+  let(:component) { StubIbmJRE.new context }
 
   let(:java_home) { JavaBuildpack::Component::MutableJavaHome.new }
   let(:configuration) do
@@ -41,16 +41,16 @@ describe JavaBuildpack::Jre::IBMJRE do
   end
 
   it 'creates Ibmjava instance' do
-    allow_any_instance_of(StubIBMJRE).to receive(:supports?).and_return false
-    allow(JavaBuildpack::Jre::IbmjreLike)
-      .to receive(:new).with(sub_configuration_context(jre_configuration).merge(component_name: 'Stub IBMJRE'))
+    allow_any_instance_of(StubIbmJRE).to receive(:supports?).and_return false
+    allow(JavaBuildpack::Jre::IbmJreInitializer)
+      .to receive(:new).with(sub_configuration_context(jre_configuration).merge(component_name: 'Stub IbmJRE'))
     allow(JavaBuildpack::Jre::JvmkillAgent)
       .to receive(:new).with(sub_configuration_context(jvmkill_agent_configuration))
     component.sub_components context
   end
 end
 
-class StubIBMJRE < JavaBuildpack::Jre::IBMJRE
+class StubIbmJRE < JavaBuildpack::Jre::IBMJRE
   public :command, :sub_components
   def supports?
     super
