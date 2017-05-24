@@ -20,7 +20,6 @@ require 'java_buildpack/util/format_duration'
 require 'java_buildpack/util/shell'
 require 'java_buildpack/util/space_case'
 require 'java_buildpack/util/sanitizer'
-require 'digest'
 
 module JavaBuildpack
   module Component
