@@ -50,7 +50,7 @@ module JavaBuildpack
       def compile
         download(@version, @uri['uri'], @component_name) do |file|
           check_sha(file, @uri['sha256sum'])
-          with_timing "Installing #{name} to #{@droplet.sandbox.relative_path_from(@droplet.root)}" do
+          with_timing "Installing #{@component_name} to #{@droplet.sandbox.relative_path_from(@droplet.root)}" do
             FileUtils.mkdir_p @droplet.sandbox
             response_file = Tempfile.new('response.properties')
             response_file.puts('INSTALLER_UI=silent')
