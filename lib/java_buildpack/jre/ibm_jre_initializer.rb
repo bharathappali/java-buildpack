@@ -50,7 +50,7 @@ module JavaBuildpack
         download(@version, @uri['uri'], @component_name) do |file|
           check_sha(file, @uri['sha256sum'])
           with_timing "Installing #{@component_name} to #{@droplet.sandbox.relative_path_from(@droplet.root)}" do
-	    install_installanywhere_bin(@droplet.sandbox, file)
+            install_installanywhere_bin(@droplet.sandbox, file)
           end
         end
         @droplet.copy_resources
