@@ -38,7 +38,7 @@ describe JavaBuildpack::Jre::IbmJRE do
     expect(component.supports?).to be
   end
 
-  it 'creates Ibmjava instance' do
+  it 'creates IbmJreInitializer instance' do
     allow_any_instance_of(StubIbmJRE).to receive(:supports?).and_return false
     allow(JavaBuildpack::Jre::IbmJreInitializer)
       .to receive(:new).with(sub_configuration_context(jre_configuration).merge(component_name: 'Stub Ibm JRE'))
