@@ -58,16 +58,6 @@ module JavaBuildpack
         raise "Method 'supports?' must be defined"
       end
 
-      # Downloads a given InstallAnywhere (tm) BIN file and installs it.
-      #
-      # @param [Pathname] target_directory the directory to install the BIN file to.  Defaults to the component's
-      #                                    sandbox.
-      # @param [String] name an optional name for the download and expansion.  Defaults to +@component_name+.
-      # @return [Void]
-      def download_bin(target_directory = @droplet.sandbox, name = @component_name)
-        super(@version, @uri, target_directory, name)
-      end
-
       # Downloads a given JAR file and stores it.
       #
       # @param [String] jar_name the name to save the jar as
