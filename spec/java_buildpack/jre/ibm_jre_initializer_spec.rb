@@ -22,7 +22,7 @@ describe JavaBuildpack::Jre::IbmJreInitializer do
   include_context 'component_helper'
   let(:java_home) { JavaBuildpack::Component::MutableJavaHome.new }
 
-  it 'detects with id of ibm_jre_initializer-<version>' do
+  it 'detects with id of ibm-jre-initializer-<version>' do
     expect(component.detect).to eq("ibm-jre-initializer=#{version}")
   end
   it 'installs java from bin', cache_fixture: 'stub-java.bin' do
