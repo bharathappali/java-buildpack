@@ -48,7 +48,7 @@ describe JavaBuildpack::Jre::IbmJRE do
   end
 end
 
-class StubIbmJRE < JavaBuildpack::Jre::IBMJRE
+class StubIbmJRE < JavaBuildpack::Jre::IbmJRE
   public :command, :sub_components
   def supports?
     super
