@@ -69,7 +69,7 @@ module JavaBuildpack
 
       private
 
-      # constant HEAP_RATIO is the ratio of memory assigned to the heap 
+      # constant HEAP_RATIO is the ratio of memory assigned to the heap
       # as against the container total and is set using -Xmx.
       HEAP_RATIO = 0.75
 
@@ -138,7 +138,7 @@ module JavaBuildpack
       # Returns the no. of bytes for a given string of minified size representation
       #
       # @param [String] size, A minified memory representation string
-      # @return [Integer] bytes, value of size in bytes 
+      # @return [Integer] bytes, value of size in bytes
       def memory_size_bytes(size)
         if size == '0'
           bytes = 0
