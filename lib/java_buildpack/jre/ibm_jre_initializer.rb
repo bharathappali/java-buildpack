@@ -69,8 +69,8 @@ module JavaBuildpack
 
       private
 
-      # constant HEAP_RATIO is the usual heap ratio percentage 
-      # of the containers memory assigned to the heap through the -Xmx value.
+      # constant HEAP_RATIO is the ratio of memory assigned to the heap 
+      # as against the container total and is set through using -Xmx.
       HEAP_RATIO = 0.75
 
       KILO = 1024
@@ -93,10 +93,14 @@ module JavaBuildpack
       end
 
       # Checks the SHA256 Checksum of the file
+      #
+      # @param [File] file, The downloaded file
+      # @param [String] checksum, The string containing the SHA256 of the file
       def check_sha256(file, checksum)
         raise 'sha256 checksum does not match' unless Digest::SHA256.hexdigest(File.read(file.path)) == checksum
       end
 
+      # Sends the memory setting ('-Xmx') value
       def mem_opts
         mopts = []
         total_memory = memory_limit_finder
@@ -110,6 +114,7 @@ module JavaBuildpack
         mopts
       end
 
+      # Returns the heap_ratio attribute in config file (if specified) or the HEAP_RATIO constant value
       def heap_ratio
         @configuration['heap_ratio'] || HEAP_RATIO
       end
@@ -121,6 +126,7 @@ module JavaBuildpack
         opts
       end
 
+      # Returns the container total memory limit in bytes
       def memory_limit_finder
         memory_limit = ENV['MEMORY_LIMIT']
         return nil unless memory_limit
@@ -129,6 +135,10 @@ module JavaBuildpack
         memory_limit_size
       end
 
+      # Returns the no. of bytes for a given string of minified size representation
+      #
+      # @param [String] size, A minified memory representation string
+      # @return [Integer] bytes, value of size in bytes 
       def memory_size_bytes(size)
         if size == '0'
           bytes = 0
@@ -144,6 +154,11 @@ module JavaBuildpack
         bytes
       end
 
+      # Returns the no. of bytes for a given memory size unit
+      #
+      # @param [String] unit, Represents a Memory Size Unit
+      # @param [Integer] value
+      # @return [Integer] bytes, value of size in bytes
       def calculate_bytes(unit, value)
         if unit == 'b' || unit == 'B'
           bytes = value
@@ -154,20 +169,30 @@ module JavaBuildpack
         elsif unit == 'g' || unit == 'G'
           bytes = KILO * KILO * KILO * value
         else
-          raise "Invalid unit '#{unit}' in memory size '#{size}'"
+          raise "Invalid unit '#{unit}' in memory size"
         end
         bytes
       end
 
+      # Checks whether the given value is an Integer
+      #
+      # @param [String] v, value as a string
       def check_is_integer?(v)
         v = Float(v)
         v && v.floor == v
       end
 
+      # Calculates the Heap size as per the Heap ratio
+      #
+      # @param [Integer] membytes, total memory in bytes
+      # @param [Numeric] heapratio, Desired/Default Heap Ratio
       def heap_size_calculator(membytes, heapratio)
         memory_size_minified(membytes * heapratio)
       end
 
+      # Calculates the Memory Size in a Minified String Representation
+      #
+      # @param [Numeric] membytes, calculated heap size
       def memory_size_minified(membytes)
         giga = membytes / 2**(10 * 3)
         mega = membytes / 2**(10 * 2)
@@ -181,18 +206,20 @@ module JavaBuildpack
         end
       end
 
+      # Returns the minified memory string
+      #
+      # @param [Integer] order, calculated memory value
+      # @param [String] char, calculated memory unit
+      # @return [String] minified memory string
       def minified_size_calculator(order, char)
         order.to_i.to_s + char
       end
 
+      # Verifies whether heap ratio is valid
       def heap_ratio_verification(ratio)
         raise 'Invalid heap ratio' unless ratio.is_a? Numeric
         raise 'heap ratio cannot be greater than 100%' unless ratio <= 1
         ratio
-      end
-
-      def num_check(num)
-        Float(num) / 100 < 1
       end
 
     end
