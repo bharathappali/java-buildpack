@@ -29,9 +29,7 @@ The JRE can also be configured by overlaying a set of resources on the default d
 To add custom SSL certificates, add your `cacerts` file to `resources/ibm_jre/jre/lib/security/cacerts`.  This file will be overlayed onto the IBM JRE distribution.
 
 ### Memory
-The total available memory for the application's container is specified when an application is pushed.
-The Java buildpack uses this value to control the JRE's use of various
-regions of memory and logs the JRE memory settings when the application starts or restarts.
+The total available memory for the application's container is specified when an application is pushed.The Java buildpack uses this value to control the JRE's use of various regions of memory and logs the JRE memory settings when the application starts or restarts.
 
 Note: If the total available memory is scaled up or down, the Java buildpack will re-calculate the JRE memory settings the next time the application is started.
 
