@@ -48,7 +48,7 @@ module JavaBuildpack
       # (see JavaBuildpack::Component::BaseComponent#compile)
       def compile
         download(@version, @uri['uri'], @component_name) do |file|
-          check_sha(file, @uri['sha256sum'])
+          check_sha256(file, @uri['sha256sum'])
           with_timing "Installing #{@component_name} to #{@droplet.sandbox.relative_path_from(@droplet.root)}" do
             install_bin(@droplet.sandbox, file)
           end
@@ -92,8 +92,8 @@ module JavaBuildpack
       end
 
       # Checks the SHA256 Checksum of the file
-      def check_sha(file, checksum)
-        raise 'sha256 checksum not matches' unless Digest::SHA256.hexdigest(File.read(file.path)) == checksum
+      def check_sha256(file, checksum)
+        raise 'sha256 checksum does not match' unless Digest::SHA256.hexdigest(File.read(file.path)) == checksum
       end
 
       def mem_opts
@@ -186,7 +186,7 @@ module JavaBuildpack
 
       def heap_ratio_verification(ratio)
         raise 'Invalid heap ratio' unless ratio.is_a? Numeric
-        raise 'heap ratio could not be greater than 100%' unless ratio < 1
+        raise 'heap ratio cannot be greater than 100%' unless ratio <= 1
         ratio
       end
 
