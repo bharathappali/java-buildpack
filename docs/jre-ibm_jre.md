@@ -34,13 +34,10 @@ The total available memory for the application's container is specified when an 
 Note: If the total available memory is scaled up or down, the Java buildpack will re-calculate the JRE memory settings the next time the application is started.
 
 #### Total Memory
-The user can change the container's total memory available to influence the JRE memory settings.
-Unless the user specifies the heap size Java option (`-Xmx`), increasing or decreasing the total memory
-available results in the heap size setting increasing or decreasing by a corresponding amount.
+The user can change the container's total memory available to influence the JRE memory settings. Unless the user specifies the heap size Java option (`-Xmx`), increasing or decreasing the total memory available results in the heap size setting increasing or decreasing by a corresponding amount.
 
 #### Memory Calculation
-The user can configure the desired heap ratio (`-Xmx`) by changing the `heap_ratio` attribute under `jre` in [`config/ibm_jre.yml`][]
-and the buildpack calculates the `-Xmx Memory Setting` based on the total memory available.
+The user can configure the desired heap ratio (`-Xmx`) by changing the `heap_ratio` attribute under `jre` in [`config/ibm_jre.yml`][] and the buildpack calculates the `-Xmx Memory Setting` based on the total memory available.
 
 The container's total memory is logged during `cf push` and `cf scale`, for example:
 ```
