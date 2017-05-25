@@ -57,5 +57,3 @@ The container's total memory is logged during `cf push` and `cf scale`, for exam
 [version syntax]: extending-repositories.md#version-syntax-and-ordering
 [IBM Knowledge Center]: http://www.ibm.com/support/knowledgecenter/SSYKE2/welcome_javasdk_family.html
 [International License Agreement for Non-Warranted Programs]: http://www14.software.ibm.com/cgi-bin/weblap/lap.pl?la_formnum=&li_formnum=L-PMAA-A3Z8P2&title=IBM%AE+SDK%2C+Java%99+Technology+Edition%2C+Version+8.0&l=en
-
-

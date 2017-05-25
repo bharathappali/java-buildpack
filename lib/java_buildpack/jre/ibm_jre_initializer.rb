@@ -69,15 +69,16 @@ module JavaBuildpack
 
       private
 
-      # constant HEAP_RATIO is assigned the usual heap ratio required
+      # constant HEAP_RATIO is the usual heap ratio percentage 
+      # of the containers memory assigned to the heap through the -Xmx value.
       HEAP_RATIO = 0.75
 
       KILO = 1024
 
-      # Installs the Downloaded InstallAnywhere (TM) BIN file to the target directory
+      # Installs the Downloaded InstallAnywhere (tm) BIN file to the target directory
       #
       # @param [String] target_directory, Where the java needs to be installed
-      # @param [File] file, InstallAnywhere (TM) BIN file
+      # @param [File] file, InstallAnywhere (tm) BIN file
       # @return [Void]
       def install_bin(target_directory, file)
         FileUtils.mkdir_p target_directory
