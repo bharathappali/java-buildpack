@@ -18,6 +18,7 @@ require 'java_buildpack/component/modular_component'
 require 'java_buildpack/jre'
 require 'java_buildpack/jre/ibmjava'
 require 'java_buildpack/jre/jvmkill_agent'
+require 'java_buildpack/jre/scaling_agent'
 
 module JavaBuildpack
   module Jre
