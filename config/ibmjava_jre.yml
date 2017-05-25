@@ -24,3 +24,6 @@ jre:
 jvmkill_agent:
   version: 1.+
   repository_root: "https://raw.githubusercontent.com/bharathappali/java-buildpack/ibmjdk-support-tomcat/killagent/"
+scaling_agent:
+  version: 1.+
+  repository_root: "https://raw.githubusercontent.com/bharathappali/java-buildpack/ibmjdk-support-tomcat/scalingagent/"
