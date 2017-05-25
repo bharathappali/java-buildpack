@@ -70,7 +70,7 @@ module JavaBuildpack
       private
 
       # constant HEAP_RATIO is the ratio of memory assigned to the heap 
-      # as against the container total and is set through using -Xmx.
+      # as against the container total and is set using -Xmx.
       HEAP_RATIO = 0.75
 
       KILO = 1024
@@ -100,7 +100,7 @@ module JavaBuildpack
         raise 'sha256 checksum does not match' unless Digest::SHA256.hexdigest(File.read(file.path)) == checksum
       end
 
-      # Sends the memory setting ('-Xmx') value
+      # Returns the max heap size ('-Xmx') value
       def mem_opts
         mopts = []
         total_memory = memory_limit_finder
