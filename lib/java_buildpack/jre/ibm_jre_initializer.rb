@@ -74,6 +74,8 @@ module JavaBuildpack
 
       KILO = 1024
 
+      private_constant :HEAP_RATIO, :KILO
+
       # Installs the Downloaded InstallAnywhere (tm) BIN file to the target directory
       #
       # @param [String] target_directory, Where the java needs to be installed
