@@ -23,7 +23,7 @@ To use IBM JRE instead of OpenJDK without forking java-buildpack, set environmen
 | `version` | The version of Java runtime to use.
 
 ### TLS Options
-It is recommended to use the following Transport Layer Security (TLS) options for IBM JRE version 8 and above 
+It is recommended to use the following Transport Layer Security (TLS) options for IBM JRE version 8 and above:
 
 `cf set-env <app_name> JAVA_OPTS '-Dcom.ibm.jsse2.overrideDefaultTLS=true'`
 
