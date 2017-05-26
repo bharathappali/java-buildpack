@@ -17,6 +17,10 @@ To use IBM JRE instead of OpenJDK without forking java-buildpack, set environmen
 
 `cf restage <app_name>`
 
+It is recommended to use the TLS OPTS below for using IBM JRE
+
+`cf set-env <app_name> JAVA_OPTS '-Dcom.ibm.jsse2.overrideDefaultTLS=true'` 
+
 | Name | Description
 | ---- | -----------
 | `repository_root` | The URL of the IBM JRE repository index ([details][repositories]).
